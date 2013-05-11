@@ -1,0 +1,3 @@
+[submodule "IPython/frontend/html/notebook/static/codemirror"]
+	path = IPython/frontend/html/notebook/static/codemirror
+	url = git://github.com/marijnh/CodeMirror.git
