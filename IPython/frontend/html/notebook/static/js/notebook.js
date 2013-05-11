@@ -99,7 +99,7 @@ var IPython = (function (IPython) {
                 // ignore shift keydown
                 return true;
             }
-            if (event.which === key.UPARROW && !event.shiftKey) {
+            if ( (event.which === key.UPARROW && !event.shiftKey) || (event.shiftKey & event.which == key.TAB) ) {
                 var cell = that.get_selected_cell();
                 if (cell.at_top()) {
                     event.preventDefault();

@@ -37,11 +37,19 @@ var IPython = (function (IPython) {
         input.append($('<div/>').addClass('prompt input_prompt'));
         var input_area = $('<div/>').addClass('input_area box-flex1');
         this.code_mirror = CodeMirror(input_area.get(0), {
+            lineNumbers: true,
+            showCursorWhenSelecting: true, 
             indentUnit : 4,
-            mode: 'python',
-            theme: 'ipython',
+            mode: 'text/x-python',
             readOnly: this.read_only,
-            onKeyEvent: $.proxy(this.handle_codemirror_keyevent,this)
+            onKeyEvent: $.proxy(this.handle_codemirror_keyevent,this),
+            keyMap: 'vim',
+            extraKeys : {
+                        Tab: function(cm) {
+                            var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+                            cm.replaceSelection(spaces, "end", "+input");
+                            }
+                            }
         });
         input.append(input_area);
         var output = $('<div></div>');
@@ -95,7 +103,6 @@ var IPython = (function (IPython) {
             };
         } else if (event.which === key.ESC) {
             IPython.tooltip.remove_and_cancel_tooltip(true);
-            return true;
         } else if (event.which === key.DOWNARROW && event.type === 'keydown') {
             // If we are not at the bottom, let CM handle the down arrow and
             // prevent the global keydown handler from handling it.

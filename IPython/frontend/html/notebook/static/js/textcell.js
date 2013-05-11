@@ -35,7 +35,8 @@ var IPython = (function (IPython) {
             value: this.placeholder,
             readOnly: this.read_only,
             lineWrapping : true,
-            onKeyEvent: $.proxy(this.handle_codemirror_keyevent,this)
+            onKeyEvent: $.proxy(this.handle_codemirror_keyevent,this),
+            keyMap: 'vim' 
         });
         // The tabindex=-1 makes this div focusable.
         var render_area = $('<div/>').addClass('text_cell_render border-box-sizing').
