@@ -44,6 +44,7 @@ var IPython = (function (IPython) {
             readOnly: this.read_only,
             onKeyEvent: $.proxy(this.handle_codemirror_keyevent,this),
             keyMap: 'vim',
+            lineWrapping: true, 
             extraKeys : {
                         Tab: function(cm) {
                             var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
